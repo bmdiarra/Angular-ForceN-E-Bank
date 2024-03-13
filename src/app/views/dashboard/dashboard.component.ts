@@ -3,6 +3,17 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 import { DashboardChartsData, IChartProps } from './dashboard-charts-data';
 
+import { TransactionService } from 'src/services/transaction.service';
+
+
+interface ITransaction {
+  id: number,
+  date: string;
+  montant: string;
+  type: string;
+}
+
+
 interface IUser {
   name: string;
   state: string;
@@ -22,8 +33,13 @@ interface IUser {
   styleUrls: ['dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  constructor(private chartsData: DashboardChartsData) {
+
+  transactionGet: any;
+
+  constructor(private chartsData: DashboardChartsData, private transactionService: TransactionService) {
   }
+
+  public transactions: ITransaction[] = [];
 
   public users: IUser[] = [
     {
@@ -113,6 +129,13 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.initCharts();
+
+    this.transactionService.getData().subscribe(data => {
+      this.transactionGet = data;
+      this.transactions = data ;
+      console.log(this.transactions); // Affiche les données récupérées dans la console
+    });
+
   }
 
   initCharts(): void {

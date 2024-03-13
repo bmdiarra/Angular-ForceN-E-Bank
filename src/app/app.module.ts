@@ -33,10 +33,13 @@ import {
   SharedModule,
   SidebarModule,
   TabsModule,
-  UtilitiesModule
+  UtilitiesModule,
 } from '@coreui/angular';
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
+import { UtilisateurService } from 'src/services/utilisateur.service';
+import { TransactionService } from 'src/services/transaction.service';
+import { HttpClientModule } from '@angular/common/http';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -72,7 +75,8 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    HttpClientModule
   ],
   providers: [
     {
@@ -80,7 +84,9 @@ const APP_CONTAINERS = [
       useClass: HashLocationStrategy
     },
     IconSetService,
-    Title
+    Title,
+    UtilisateurService,
+    TransactionService
   ],
   bootstrap: [AppComponent]
 })
