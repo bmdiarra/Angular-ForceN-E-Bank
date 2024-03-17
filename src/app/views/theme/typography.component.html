@@ -10,30 +10,49 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Numero Compte</th>
+            <th scope="col">Solde</th>
+            <th scope="col">Nom d'utilisateur</th>
           </tr>
         </thead>
+        
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>twitter</td>
-          </tr>
+          <ng-container *ngFor="let compte of comptesGet; index as i">
+            <tr (click)="selectCompte(compte)">
+              <th scope="row">{{ compte.id }}</th>
+              <td>{{ compte.numeroDeCompte }}</td>
+              <td>{{ compte.solde }}</td>
+              <td>{{ compte.utilisateur.nom }}</td>
+            </tr>
+            <tr *ngIf="selectedCompte && selectedCompte.id === compte.id">
+              <td colspan="5">
+                <div class="collapse show">
+                  <div class="card card-body">
+                    <h4>Détails du compte sélectionné :</h4>
+                    <!-- Utilisation de la directive *ngIf pour afficher les trois points de suspension pendant le chargement -->
+                    <div *ngIf="loadingDetails" class="row justify-content-center align-items-center">
+
+                      <svg width="50px" height="50px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                        <circle cx="50" cy="50" fill="none" stroke="#000000" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138">
+                          <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
+                        </circle>
+                      </svg>
+                      
+                    </div>
+                    <!-- Affichage des détails du compte une fois qu'ils sont chargés -->
+                    <ng-container *ngIf="!loadingDetails">
+                      <p>ID: {{ selectedCompte.id }}</p>
+                      <p>Nom d'utilisateur: {{ selectedCompte.utilisateur.nom }}</p>
+                      <p>Email: {{ selectedCompte.utilisateur.email }}</p>
+                    </ng-container>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
         </tbody>
+        
+
       </table>
       
     </c-card-body>
