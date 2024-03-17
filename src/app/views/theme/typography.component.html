@@ -6,54 +6,74 @@
     <c-card-body>
       <p>Documentation and examples for Bootstrap typography, including global settings, headings, body text, lists, and more.</p>
 
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Numero Compte</th>
-            <th scope="col">Solde</th>
-            <th scope="col">Nom d'utilisateur</th>
-          </tr>
-        </thead>
-        
-        <tbody>
-          <ng-container *ngFor="let compte of comptesGet; index as i">
-            <tr (click)="selectCompte(compte)">
-              <th scope="row">{{ compte.id }}</th>
-              <td>{{ compte.numeroDeCompte }}</td>
-              <td>{{ compte.solde }}</td>
-              <td>{{ compte.utilisateur.nom }}</td>
+      <div *ngIf="selectedCompteId === null">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Numero Compte</th>
+              <th scope="col">Solde</th>
+              <th scope="col">Nom d'utilisateur</th>
+              <th scope="col"> + </th>
             </tr>
-            <tr *ngIf="selectedCompte && selectedCompte.id === compte.id">
-              <td colspan="5">
-                <div class="collapse show">
-                  <div class="card card-body">
-                    <h4>Détails du compte sélectionné :</h4>
-                    <!-- Utilisation de la directive *ngIf pour afficher les trois points de suspension pendant le chargement -->
-                    <div *ngIf="loadingDetails" class="row justify-content-center align-items-center">
+          </thead>
+          
+          <tbody>
+            <ng-container *ngFor="let compte of comptesGet; index as i">
+              <tr>
+                <th (click)="selectCompteId(compte.id, compte.transactions)" scope="row">{{ compte.id }}</th>
+                <td (click)="selectCompteId(compte.id, compte.transactions)">{{ compte.numeroDeCompte }}</td>
+                <td (click)="selectCompteId(compte.id, compte.transactions)">{{ compte.solde }}</td>
+                <td (click)="selectCompteId(compte.id, compte.transactions)">{{ compte.utilisateur.nom }}</td>
+                <td (click)="selectCompte(compte)"> + </td>
+              </tr>
+              <tr *ngIf="selectedCompte && selectedCompte.id === compte.id">
+                <td colspan="5">
+                  <div class="collapse show">
+                    <div class="card card-body">
+                      <h4>Détails du compte sélectionné :</h4>
+                      <!-- Utilisation de la directive *ngIf pour afficher les trois points de suspension pendant le chargement -->
+                      <div *ngIf="loadingDetails" class="row justify-content-center align-items-center">
 
-                      <svg width="50px" height="50px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-                        <circle cx="50" cy="50" fill="none" stroke="#000000" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138">
-                          <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
-                        </circle>
-                      </svg>
-                      
+                        <svg width="50px" height="50px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                          <circle cx="50" cy="50" fill="none" stroke="#000000" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138">
+                            <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
+                          </circle>
+                        </svg>
+                        
+                      </div>
+                      <!-- Affichage des détails du compte une fois qu'ils sont chargés -->
+                      <ng-container *ngIf="!loadingDetails">
+                        <p>ID: {{ selectedCompte.id }}</p>
+                        <p>Nom d'utilisateur: {{ selectedCompte.utilisateur.nom }}</p>
+                        <p>Email: {{ selectedCompte.utilisateur.email }}</p>
+                      </ng-container>
                     </div>
-                    <!-- Affichage des détails du compte une fois qu'ils sont chargés -->
-                    <ng-container *ngIf="!loadingDetails">
-                      <p>ID: {{ selectedCompte.id }}</p>
-                      <p>Nom d'utilisateur: {{ selectedCompte.utilisateur.nom }}</p>
-                      <p>Email: {{ selectedCompte.utilisateur.email }}</p>
-                    </ng-container>
                   </div>
-                </div>
-              </td>
-            </tr>
-          </ng-container>
-        </tbody>
-        
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+          
 
-      </table>
+        </table>
+      </div>
+
+      <div *ngIf="selectedCompteId !== null">
+
+          <!-- Afficher les détails de la transaction dans un div -->
+          <div class="transaction-details">
+            <h2>Détails de la transaction</h2>
+            <ul *ngFor="let trans of transactions; index as i">
+              <li>ID: {{trans.id}}</li>
+              <li>Montant: {{trans.montant}}</li>
+              <li>Date: {{trans.date}}</li>
+              <li>Type: {{trans.type}}</li>
+            </ul>
+            <button (click)="deselectCompteId()">Fermer</button>
+          </div>
+        
+      </div>
       
     </c-card-body>
   </c-card>

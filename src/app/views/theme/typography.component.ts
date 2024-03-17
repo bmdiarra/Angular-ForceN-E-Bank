@@ -8,7 +8,9 @@ export class TypographyComponent implements OnInit {
 
   public comptesGet: any;
   public selectedCompte: any;
+  public selectedCompteId: any = null;
   public loadingDetails: boolean = false;
+  public transactions : any ;
   
   constructor( private compteService: CompteService ) {}
 
@@ -29,6 +31,18 @@ export class TypographyComponent implements OnInit {
       this.loadingDetails = false; // Indiquer que les détails sont chargés
     }, 1000);
 
+  }
+
+   // Fonction pour sélectionner un compte
+   selectCompteId(compteId: number, trans : any) {
+    this.selectedCompteId = compteId;
+    this.transactions = trans ;
+  }
+
+  // Fonction pour désélectionner un compte
+  deselectCompteId() {
+    this.selectedCompteId = null;
+    this.transactions = null ;
   }
 
 }
