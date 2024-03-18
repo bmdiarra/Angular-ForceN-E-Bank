@@ -14,19 +14,36 @@
               <th scope="col">Numero Compte</th>
               <th scope="col">Solde</th>
               <th scope="col">Nom d'utilisateur</th>
-              <th scope="col"> + </th>
+              <th scope="col"> Voir </th>
+              <th scope="col"> Modifier </th>
             </tr>
           </thead>
           
           <tbody>
             <ng-container *ngFor="let compte of comptesGet; index as i">
-              <tr>
+              <tr  *ngIf="!editMode">
                 <th (click)="selectCompteId(compte.id, compte.transactions)" scope="row">{{ compte.id }}</th>
                 <td (click)="selectCompteId(compte.id, compte.transactions)">{{ compte.numeroDeCompte }}</td>
                 <td (click)="selectCompteId(compte.id, compte.transactions)">{{ compte.solde }}</td>
                 <td (click)="selectCompteId(compte.id, compte.transactions)">{{ compte.utilisateur.nom }}</td>
-                <td (click)="selectCompte(compte)"> + </td>
+                <td (click)="selectCompte(compte)"> Yeux </td>
+                <td (click)="editMode = true && editModeId = compte.id"> Mod </td>
+                
+
               </tr>
+
+              <tr  *ngIf="editMode && editModeId === compte.id">
+                <td><input type="text" value="{{compte.id}}" /> </td>
+                <td><input type="text" value="{{compte.numeroDeCompte}}" /> </td>
+                <td><input type="text" value="{{compte.solde}}" /> </td>
+                <td><input type="text" value="{{compte.utilisateur.nom}}" /> </td>
+                <td> Yeux </td>
+                <td *ngIf="editMode">
+                  <button *ngIf="editMode" (click)="saveChanges(compte.id)">Enregistrer</button>
+                </td>
+
+              </tr>
+
               <tr *ngIf="selectedCompte && selectedCompte.id === compte.id">
                 <td colspan="5">
                   <div class="collapse show">

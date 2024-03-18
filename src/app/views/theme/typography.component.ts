@@ -11,6 +11,8 @@ export class TypographyComponent implements OnInit {
   public selectedCompteId: any = null;
   public loadingDetails: boolean = false;
   public transactions : any ;
+  public editMode: boolean = false;
+  public editModeId: any ;
   
   constructor( private compteService: CompteService ) {}
 
@@ -44,5 +46,36 @@ export class TypographyComponent implements OnInit {
     this.selectedCompteId = null;
     this.transactions = null ;
   }
+
+  saveChanges(editId: any) {
+    this.editMode = false;
+    this.editModeId = editId ;
+
+
+    /*const apiUrl = `http://localhost:8080/api/comptes/${id}`;
+    // Construisez l'objet contenant les données modifiées, par exemple :
+    const newData = {
+      numeroDeCompte: compte.numeroDeCompte,
+      solde: compte.solde,
+      utilisateur: {
+        nom: compte.utilisateur.nom
+      }
+      // Ajoutez d'autres champs modifiables selon vos besoins
+    };
+
+    this.http.put(apiUrl, newData)
+      .subscribe(
+        (response) => {
+          console.log('Modification réussie :', response);
+          // Traitez la réponse de l'API en fonction de vos besoins
+        },
+        (error) => {
+          console.error('Erreur lors de la modification :', error);
+          // Gérez les erreurs selon vos besoins
+        }
+      );*/
+
+  }
+  
 
 }
