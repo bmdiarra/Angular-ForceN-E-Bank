@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CompteService} from 'src/services/compte.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   templateUrl: 'typography.component.html',
@@ -13,8 +15,8 @@ export class TypographyComponent implements OnInit {
   public transactions : any ;
   public editMode: boolean = false;
   public editModeId: any ;
-  
-  constructor( private compteService: CompteService ) {}
+
+  constructor( private compteService: CompteService, private http: HttpClient ) {}
 
   ngOnInit(): void {
 
@@ -47,12 +49,12 @@ export class TypographyComponent implements OnInit {
     this.transactions = null ;
   }
 
-  saveChanges(editId: any) {
+  saveChanges(compte: any) {
     this.editMode = false;
-    this.editModeId = editId ;
+    this.editModeId = compte.id ;
 
 
-    /*const apiUrl = `http://localhost:8080/api/comptes/${id}`;
+    const apiUrl = `http://localhost:8080/api/comptes/${compte.id}`;
     // Construisez l'objet contenant les données modifiées, par exemple :
     const newData = {
       numeroDeCompte: compte.numeroDeCompte,
@@ -62,6 +64,8 @@ export class TypographyComponent implements OnInit {
       }
       // Ajoutez d'autres champs modifiables selon vos besoins
     };
+
+    console.log(newData);
 
     this.http.put(apiUrl, newData)
       .subscribe(
@@ -73,7 +77,7 @@ export class TypographyComponent implements OnInit {
           console.error('Erreur lors de la modification :', error);
           // Gérez les erreurs selon vos besoins
         }
-      );*/
+      );
 
   }
   
