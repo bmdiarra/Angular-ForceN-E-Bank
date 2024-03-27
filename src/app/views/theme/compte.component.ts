@@ -4,9 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Component({
-  templateUrl: 'typography.component.html',
+  templateUrl: 'compte.component.html',
 })
-export class TypographyComponent implements OnInit {
+export class CompteComponent implements OnInit {
 
   public comptesGet: any;
   public selectedCompte: any;

@@ -21,7 +21,7 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Comptes',
-    url: '/theme/typography',
+    url: '/theme/compte',
     linkProps: { fragment: 'someAnchor' },
     iconComponent: { name: 'cil-pencil' }
   },

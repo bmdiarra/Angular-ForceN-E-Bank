@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ColorsComponent } from './colors.component';
-import { TypographyComponent } from './typography.component';
+import { CompteComponent } from './compte.component';
 
 const routes: Routes = [
   {
@@ -24,10 +24,10 @@ const routes: Routes = [
         },
       },
       {
-        path: 'typography',
-        component: TypographyComponent,
+        path: 'compte',
+        component: CompteComponent,
         data: {
-          title: 'Typography',
+          title: 'Compte',
         },
       },
     ],

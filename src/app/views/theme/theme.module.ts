@@ -5,7 +5,7 @@ import { CardModule, GridModule, NavModule, UtilitiesModule, TabsModule } from '
 import { IconModule } from '@coreui/icons-angular';
 
 import { ColorsComponent, ThemeColorComponent } from './colors.component';
-import { TypographyComponent } from './typography.component';
+import { CompteComponent } from './compte.component';
 
 // Theme Routing
 import { ThemeRoutingModule } from './theme-routing.module';
@@ -24,7 +24,7 @@ import { ThemeRoutingModule } from './theme-routing.module';
   declarations: [
     ColorsComponent,
     ThemeColorComponent,
-    TypographyComponent,
+    CompteComponent,
   ]
 })
 export class ThemeModule {
