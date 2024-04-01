@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
-import { DashboardChartsData, IChartProps } from './dashboard-charts-data';
+import { TransactionChartsData, IChartProps } from './transaction-charts-data';
 
 import { TransactionService } from 'src/services/transaction.service';
 
@@ -29,14 +29,14 @@ interface IUser {
 }
 
 @Component({
-  templateUrl: 'dashboard.component.html',
-  styleUrls: ['dashboard.component.scss']
+  templateUrl: 'transaction.component.html',
+  styleUrls: ['transaction.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class TransactionComponent implements OnInit {
 
   transactionGet: any;
 
-  constructor(private chartsData: DashboardChartsData, private transactionService: TransactionService) {
+  constructor(private chartsData: TransactionChartsData, private transactionService: TransactionService) {
   }
 
   public transactions: ITransaction[] = [];

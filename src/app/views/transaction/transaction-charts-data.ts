@@ -15,7 +15,7 @@ export interface IChartProps {
 @Injectable({
   providedIn: 'any'
 })
-export class DashboardChartsData {
+export class TransactionChartsData {
   constructor() {
     this.initMainChart();
   }

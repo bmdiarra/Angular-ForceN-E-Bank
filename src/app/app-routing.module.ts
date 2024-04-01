@@ -10,7 +10,7 @@ import { RegisterComponent } from './views/pages/register/register.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'transaction',
     pathMatch: 'full'
   },
   {
@@ -21,9 +21,9 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'dashboard',
+        path: 'transaction',
         loadChildren: () =>
-          import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
+          import('./views/transaction/transaction.module').then((m) => m.TransactionModule)
       },
       {
         path: 'theme',
@@ -66,7 +66,7 @@ const routes: Routes = [
       title: 'Register Page'
     }
   },
-  {path: '**', redirectTo: 'dashboard'}
+  {path: '**', redirectTo: 'transaction'}
 ];
 
 @NgModule({

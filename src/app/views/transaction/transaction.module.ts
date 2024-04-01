@@ -17,14 +17,14 @@ import {
 import { IconModule } from '@coreui/icons-angular';
 import { ChartjsModule } from '@coreui/angular-chartjs';
 
-import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardComponent } from './dashboard.component';
+import { TransactionRoutingModule } from './transaction-routing.module';
+import { TransactionComponent } from './transaction.component';
 
 import { WidgetsModule } from '../widgets/widgets.module';
 
 @NgModule({
   imports: [
-    DashboardRoutingModule,
+    TransactionRoutingModule,
     CardModule,
     NavModule,
     IconModule,
@@ -42,7 +42,7 @@ import { WidgetsModule } from '../widgets/widgets.module';
     TableModule,
     WidgetsModule
   ],
-  declarations: [DashboardComponent]
+  declarations: [TransactionComponent]
 })
-export class DashboardModule {
+export class TransactionModule {
 }
