@@ -4,9 +4,9 @@ import { DOCUMENT } from '@angular/common';
 import { getStyle, rgbToHex } from '@coreui/utils';
 
 @Component({
-  templateUrl: 'colors.component.html'
+  templateUrl: 'transferts.component.html'
 })
-export class ColorsComponent implements OnInit, AfterViewInit {
+export class TransfertsComponent implements OnInit, AfterViewInit {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -14,7 +14,7 @@ export class ColorsComponent implements OnInit, AfterViewInit {
   ) {
   }
 
-  public themeColors(): void {
+  public themeTransferts(): void {
     Array.from(this.document.querySelectorAll('.theme-color')).forEach(
       (element: Element) => {
         const htmlElement = element as HTMLElement;
@@ -42,7 +42,7 @@ export class ColorsComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    this.themeColors();
+    this.themeTransferts();
   }
 }
 

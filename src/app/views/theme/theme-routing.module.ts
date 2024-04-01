@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ColorsComponent } from './colors.component';
+import { TransfertsComponent } from './transferts.component';
 import { CompteComponent } from './compte.component';
 
 const routes: Routes = [
@@ -14,13 +14,13 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'colors',
+        redirectTo: 'transferts',
       },
       {
-        path: 'colors',
-        component: ColorsComponent,
+        path: 'transferts',
+        component: TransfertsComponent,
         data: {
-          title: 'Colors',
+          title: 'Transferts',
         },
       },
       {
