@@ -35,7 +35,7 @@
               <tr  *ngIf="editMode && editModeId === compte.id">
                 <td><input type="text" value="{{compte.id}}" /> </td>
                 <td><input type="text" value="{{compte.numeroDeCompte}}" /> </td>
-                <td><input type="text" value="{{compte.solde}}" /> </td>
+                <td><input type="text" [(ngModel)]="comptesolde" placeholder="{{compte.solde}}" /> </td>
                 <td><input type="text" value="{{compte.utilisateur.nom}}" /> </td>
                 <td> Yeux </td>
                 <td *ngIf="editMode">

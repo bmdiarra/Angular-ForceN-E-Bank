@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CompteService} from 'src/services/compte.service';
 import { HttpClient } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -15,6 +16,8 @@ export class CompteComponent implements OnInit {
   public transactions : any ;
   public editMode: boolean = false;
   public editModeId: any ;
+
+  public comptesolde : any ;
 
   constructor( private compteService: CompteService, private http: HttpClient ) {}
 
@@ -53,19 +56,17 @@ export class CompteComponent implements OnInit {
     this.editMode = false;
     this.editModeId = compte.id ;
 
-
     const apiUrl = `http://localhost:8080/api/comptes/${compte.id}`;
     // Construisez l'objet contenant les données modifiées, par exemple :
     const newData = {
       numeroDeCompte: compte.numeroDeCompte,
-      solde: compte.solde,
+      solde: this.comptesolde,
       utilisateur: {
         nom: compte.utilisateur.nom
       }
       // Ajoutez d'autres champs modifiables selon vos besoins
     };
 
-    console.log(newData);
 
     this.http.put(apiUrl, newData)
       .subscribe(
